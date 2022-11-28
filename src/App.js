@@ -56,6 +56,7 @@ function App() {
     return (
         <>
             <h1>Fruitmand bezorgservice</h1>
+            <main>
             <section className="fruit-basket">
                 <Article
                     name="🍓 Aardbeien"
@@ -113,6 +114,7 @@ function App() {
                     id="form-age"
                     type="number"
                     name="age"
+                    minAge="18"
                     change={handleChange}
                     value={formState.age}
                 >
@@ -122,7 +124,7 @@ function App() {
                     id="form-zipcode"
                     type="text"
                     name="zipcode"
-                    onChange={handleChange}
+                    change={handleChange}
                     value={formState.zipcode}
                 >
                     Postcode
@@ -140,6 +142,7 @@ function App() {
                         <option value="monthly">Iedere maand</option>
                     </select>
                 </label>
+                <span>
                 <label htmlFor="form-moment">
                     Overdag
                     <input
@@ -162,8 +165,10 @@ function App() {
                         onChange={handleChange}
                     />
                 </label>
+                </span>
                 <label htmlFor="form-comment">
                     Opmerking
+                    <div>
                     <textarea
                         id="form-comment"
                         name="comments"
@@ -173,6 +178,7 @@ function App() {
                         onChange={handleChange}
                     >
                     </textarea>
+                    </div>
                 </label>
                 <label htmlFor="form-terms">
                     <input
@@ -191,6 +197,7 @@ function App() {
                     Verzenden
                 </Button>
             </form>
+            </main>
         </>
     );
 }

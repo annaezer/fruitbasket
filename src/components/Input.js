@@ -1,6 +1,6 @@
 import React from 'react';
 
-function Input({id, name, type, change, value, children}) {
+function Input({id, name, type, change, value, children, minAge}) {
     return (
             <label htmlFor={id}>
                 {children}
@@ -10,6 +10,7 @@ function Input({id, name, type, change, value, children}) {
                     name={name}
                     onChange={change}
                     value={value}
+                    min={minAge}
                 />
             </label>
     );

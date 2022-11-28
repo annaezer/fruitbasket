@@ -1,32 +1,78 @@
+h1 {
+    padding: 10px;
+    margin: 40px;
+    font-family: Rockwell, Arial, sans-serif;
+    color: darkolivegreen;
+    text-transform: uppercase;
+}
+
+.fruit-basket {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid darkolivegreen;
+    border-radius: 2%;
+}
+
 .fruit-option {
     display: flex;
     flex-direction: row;
     justify-content: center;
     flex-basis: 100px;
+    width: 400px;
     padding: 10px;
     margin: 10px;
-    border: 2px solid black;
+    border: 2px dotted darkgrey;
     border-radius: 2%;
 }
 
-.fruit-option img {
-    width: 10%;
-    height: 10%;
+.fruit-name {
+    font-size: 20px;
+    padding: 20px;
+    text-transform: uppercase;
+}
+
+.min-one, .add-one, p {
+    padding: 10px;
+    margin: 40px 5px;
 }
 
 .reset-button {
     width: 100px;
     height: 50px;
-}
-
-.fruit-name {
-    font-size: 20px;
+    background-color: darkolivegreen;
+    text-transform: uppercase;
+    border-radius: 10%;
+    margin: 15px;
 }
 
 form {
     display: flex;
     flex-direction: column;
-    margin: 20px;
+    justify-content: space-between;
+    flex-basis: 800px;
+    width: 400px;
+    margin: 0 10px;
     padding: 10px;
-    border: 2px solid deeppink;
+    border: 2px solid darkolivegreen;
+    border-radius: 2%;
+}
+
+label {
+    margin: 10px;
+}
+
+input, select, textarea, span {
+    margin: 10px;
+}
+
+.submit-button {
+    width: 100px;
+    height: 50px;
+    background-color: darkolivegreen;
+    text-transform: uppercase;
+    border-radius: 10%;
+    margin: 5px;
+    align-self: center;
 }
