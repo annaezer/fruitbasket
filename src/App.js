@@ -1,12 +1,16 @@
 import React, {useState} from 'react';
 import './App.css';
+import Button from "./components/Button";
+import Article from "./components/Article";
+import Input from "./components/Input";
 
-// 1. Eerst section en vier article elementen aanmaken met h4, twee buttons p element. Daaronder maar binnen section nog een button van type reset. Info statisch invullen. Afbeeldingen importeren.
-// 2. Buttons met onClick maken, 3 functies aanmaken voor nu met console log om te kijken of het werkt.
+// 1. Eerst section en vier article elementen aanmaken met h4, twee buttons p element. Daaronder maar binnen section nog een button van type reset. Info statisch invullen.
+// 2. Buttons met onClick maken, console log om te kijken of het werkt.
 // 3. Nu werkend krijgen dat ze bij de counter 1 optellen, 1 aftrekken of alles resetten. Onder 0 mag niet. State gebruiken. Button - met conditie 0 disablen.
 // 4. Formulier aanmaken met alle inputs.
-// 5. Voor inputs gecombineerder useState aanmaken
-// 6. Op alle inputs eventlistener onChange zetten want waardes invoerveld nodig. Ook value toevoegen en daar de huisidge waarde opzetten uit useState.
+// 5. Voor inputs gecombineerde useState aanmaken
+// 6. Op alle inputs eventlistener onChange zetten want waardes invoerveld nodig. Ook value toevoegen en daar de huidige waarde opzetten uit useState.
+// 7.Componenten maken; van buttons, articles en een aantal inputs. Verder lijkt me niet handig voor bijv select, radio en checkbox
 
 
 function App() {
@@ -39,133 +43,90 @@ function App() {
 
     function handleSubmit(e) {
         e.preventDefault();
-        console.log(formState, `Bananen: ${countBanana} Aardbeien: ${countStrawberry} Kiwi's: ${countKiwi} Appels: ${countApple}`);
+        console.log(formState, `Fruitmand bestelling: Bananen: ${countBanana} Aardbeien: ${countStrawberry} Kiwi's: ${countKiwi} Appels: ${countApple}`);
+    }
+
+    function reset() {
+        setCountStrawberry(0);
+        setCountBanana(0);
+        setCountApple(0);
+        setCountKiwi(0);
     }
 
     return (
         <>
             <h1>Fruitmand bezorgservice</h1>
             <section className="fruit-basket">
-                <article className="fruit-option">
-                    <h4 className="fruit-name">🍓 Aardbeien</h4>
-                    <button
-                        type="button"
-                        className="min-one"
-                        onClick={() => setCountStrawberry(countStrawberry - 1)}
-                        disabled={countStrawberry === 0}
-                    > -
-                    </button>
-                    <p className="counter"> {countStrawberry} </p>
-                    <button
-                        type="button"
-                        className="add-one"
-                        onClick={() => setCountStrawberry(countStrawberry + 1)}
-                    > +
-                    </button>
-                </article>
-
-                <article className="fruit-option">
-                    <h4 className="fruit-name">🍌 Bananen</h4>
-                    <button
-                        type="button"
-                        className="min-one"
-                        onClick={() => setCountBanana(countBanana - 1)}
-                        disabled={countBanana === 0}
-                    > -
-                    </button>
-                    <p className="counter"> {countBanana} </p>
-                    <button
-                        type="button"
-                        className="add-one"
-                        onClick={() => setCountBanana(countBanana + 1)}
-                    > +
-                    </button>
-                </article>
-
-                <article className="fruit-option">
-                    <h4 className="fruit-name">🍏 Appels</h4>
-                    <button
-                        type="button"
-                        className="min-one"
-                        onClick={() => setCountApple(countApple - 1)}
-                        disabled={countApple === 0}
-                    > -
-                    </button>
-                    <p className="counter"> {countApple} </p>
-                    <button
-                        type="button"
-                        className="add-one"
-                        onClick={() => setCountApple(countApple + 1)}
-                    > +
-                    </button>
-                </article>
-
-                <article className="fruit-option">
-                    <h4 className="fruit-name">🥝 Kiwi's</h4>
-                    <button
-                        type="button"
-                        className="min-one"
-                        onClick={() => setCountKiwi(countKiwi - 1)}
-                        disabled={countKiwi === 0}
-                    > -
-                    </button>
-                    <p className="counter"> {countKiwi} </p>
-                    <button
-                        type="button"
-                        className="add-one"
-                        onClick={() => setCountKiwi(countKiwi + 1)}
-                    > +
-                    </button>
-                </article>
-
-                <button type="reset"
-                        className="reset-button"
-                        onClick={() => setCountStrawberry(0) + setCountBanana(0) + setCountApple(0) + setCountKiwi(0)}
-                > Reset
-                </button>
+                <Article
+                    name="🍓 Aardbeien"
+                    clickHandlerMin={() => setCountStrawberry(countStrawberry - 1)}
+                    fruitNameCounter={countStrawberry}
+                    clickHandlerPlus={() => setCountStrawberry(countStrawberry + 1)}
+                />
+                <Article
+                    name="🍌 Bananen"
+                    clickHandlerMin={() => setCountBanana(countBanana - 1)}
+                    fruitNameCounter={countBanana}
+                    clickHandlerPlus={() => setCountBanana(countBanana + 1)}
+                />
+                <Article
+                    name="🍏 Appels"
+                    clickHandlerMin={() => setCountApple(countApple - 1)}
+                    fruitNameCounter={countApple}
+                    clickHandlerPlus={() => setCountApple(countApple + 1)}
+                />
+                <Article
+                    name="🥝 Kiwi's"
+                    clickHandlerMin={() => setCountKiwi(countKiwi - 1)}
+                    fruitNameCounter={countKiwi}
+                    clickHandlerPlus={() => setCountKiwi(countKiwi + 1)}
+                />
+                <Button
+                    buttonType="reset"
+                    name="reset-button"
+                    clickHandler={reset}
+                >
+                    Reset
+                </Button>
             </section>
 
             <form onSubmit={handleSubmit}>
-                <label htmlFor="form-firstname">
+                <Input
+                    id="form-firstname"
+                    type="text"
+                    name="firstname"
+                    change={handleChange}
+                    value={formState.firstname}
+                >
                     Voornaam
-                    <input
-                        type="text"
-                        id="form-firstname"
-                        name="firstname"
-                        value={formState.firstname}
-                        onChange={handleChange}
-                    />
-                </label>
-                <label htmlFor="form-lastname">
+                </Input>
+                <Input
+                    id="form-lastname"
+                    type="text"
+                    name="lastname"
+                    change={handleChange}
+                    value={formState.lastname}
+                >
                     Achternaam
-                    <input
-                        type="text"
-                        id="form-lastname"
-                        name="lastname"
-                        value={formState.lastname}
-                        onChange={handleChange}
-                    />
-                </label>
-                <label htmlFor="form-age">
+                </Input>
+                <Input
+                    id="form-age"
+                    type="number"
+                    name="age"
+                    change={handleChange}
+                    value={formState.age}
+                >
                     Leeftijd
-                    <input
-                        type="number"
-                        id="form-age"
-                        name="age"
-                        value={formState.age}
-                        onChange={handleChange}
-                    />
-                </label>
-                <label htmlFor="form-zipcode">
+                </Input>
+                <Input
+                    id="form-zipcode"
+                    type="text"
+                    name="zipcode"
+                    onChange={handleChange}
+                    value={formState.zipcode}
+                >
                     Postcode
-                    <input
-                        type="text"
-                        id="form-zipcode"
-                        name="zipcode"
-                        value={formState.zipcode}
-                        onChange={handleChange}
-                    />
-                </label>
+                </Input>
                 <label htmlFor="form-delivery-options">
                     Bezorgfrequentie
                     <select
@@ -223,14 +184,15 @@ function App() {
                     />
                     Ik ga akkoord met de voorwaarden
                 </label>
-                <button type="submit">
+                <Button
+                    buttonType="submit"
+                    name="submit-button"
+                >
                     Verzenden
-                </button>
+                </Button>
             </form>
         </>
     );
 }
 
 export default App;
-
-// Pas wanneer de gebruiker op verzenden drukt, worden de formulier-waardes én de fruit-waardes in de console gelogd!

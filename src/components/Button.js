@@ -1,10 +1,14 @@
 import React from 'react';
 
-const Button = () => {
+function Button ({children, buttonType, name, clickHandler}) {
     return (
-        <div>
-            
-        </div>
+        <button
+            type={buttonType}
+            className={name}
+            onClick={clickHandler}
+                >
+            {children}
+        </button>
     );
 };
 
